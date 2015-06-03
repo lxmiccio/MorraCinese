@@ -18,6 +18,11 @@ public class Round
         this.partita = partita;
     }
     
+    public Partita getPartita()
+    {
+        return this.partita;
+    }
+    
     public Giocatore getVincitore()
     {
         Giocatore vincitore = null;
