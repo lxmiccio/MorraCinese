@@ -2,7 +2,7 @@ package morracinese.partita.giocatore;
 
 /**
  *
- * @author Alex
+ * @author Alex, Simone
  */
 public class Giocatore
 {
@@ -12,6 +12,7 @@ public class Giocatore
     public Giocatore(String nome)
     {
         this.nome = nome;
+        this.punteggio = 0;
     }
     
     public void increasePunteggio()

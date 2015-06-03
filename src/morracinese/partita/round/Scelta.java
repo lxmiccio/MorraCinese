@@ -2,7 +2,7 @@ package morracinese.partita.round;
 
 /**
  *
- * @author Alex
+ * @author Alex, Simone
  */
 public enum Scelta
 {

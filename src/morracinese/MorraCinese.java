@@ -1,9 +1,8 @@
 package morracinese;
 
-import java.io.IOException;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
-import morracinese.partita.Partita;
+import java.io.*;
+import morracinese.partita.*;
+import morracinese.partita.round.*;
 
 /**
  *
@@ -11,10 +10,63 @@ import morracinese.partita.Partita;
  */
 public class MorraCinese
 {
-    public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException, IOException
+    public static void main(String[] args) throws IOException
     {
-        Partita partita = new Partita(3);
-        partita.startPartita();
-        System.out.println(partita.getVincitore() + " ha vinto la partita");
+    	BufferedReader tastiera = new BufferedReader(new InputStreamReader(System.in));
+    	String scelta = null;
+        boolean legalScelta = false;
+        Partita partita = new Partita(5);
+        
+        for(int roundCorrente = 0; roundCorrente < partita.getNumeroRound(); roundCorrente++)
+        {
+            Round round = new Round(partita);
+            partita.addRound(round);
+            
+            System.out.println("Round numero " + (roundCorrente+1) + "/" + partita.getNumeroRound());
+            
+            legalScelta = false;
+            while(!legalScelta)
+            {
+                System.out.print("Scelta giocatore 1: ");
+                scelta = tastiera.readLine();
+                if(scelta.equals("c") || scelta.equals("f") || scelta.equals("s"))
+                    legalScelta = true;
+                else
+                    System.err.println("c: carta, f: forbice, s: sasso");
+            }
+            if(scelta.equals("c"))
+                round.setSceltaGiocatore1(Scelta.CARTA);
+            else if(scelta.equals("f"))
+                round.setSceltaGiocatore1(Scelta.FORBICE);
+            else if(scelta.equals("s"))
+                round.setSceltaGiocatore1(Scelta.SASSO);
+            
+            legalScelta = false;
+            while(!legalScelta)
+            {
+                System.out.print("Scelta giocatore 2: ");
+                scelta = tastiera.readLine();
+                if(scelta.equals("c") || scelta.equals("f") || scelta.equals("s"))
+                    legalScelta = true;
+                else
+                    System.err.println("c: carta, f: forbice, s: sasso");
+            }
+            if(scelta.equals("c"))
+                round.setSceltaGiocatore2(Scelta.CARTA);
+            else if(scelta.equals("f"))
+                round.setSceltaGiocatore2(Scelta.FORBICE);
+            else if(scelta.equals("s"))
+                round.setSceltaGiocatore2(Scelta.SASSO);
+            
+            if(round.getVincitore() != null)
+                round.getVincitore().increasePunteggio();
+            
+            System.out.println(partita.getGiocatore1().getPunteggio() + "-" + partita.getGiocatore2().getPunteggio() + "\n");
+        }
+        
+        if(partita.getVincitore() != null)
+            System.out.println(partita.getVincitore().getNome() + " ha vinto " + partita.getVincitore().getPunteggio() + " a " + partita.getSconfitto().getPunteggio() + "\n");
+        else
+           System.out.println("Pareggio" + "\n"); 
     }
 }
