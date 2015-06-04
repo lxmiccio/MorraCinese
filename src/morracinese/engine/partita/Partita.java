@@ -1,8 +1,8 @@
-package morracinese.partita;
+package morracinese.engine.partita;
 
 import java.util.ArrayList;
-import morracinese.partita.giocatore.Giocatore;
-import morracinese.partita.round.*;
+import morracinese.engine.partita.round.*;
+import morracinese.engine.partita.giocatore.*;
 
 /**
  *
@@ -17,10 +17,10 @@ public class Partita
     
     public Partita(int numeroRound)
     {
-        this.rounds = new ArrayList<Round>();
-        this.giocatore1 = new Giocatore("Giocatore1");
-        this.giocatore2 = new Giocatore("Giocatore2");
+        if(numeroRound <= 0)
+            throw new IllegalArgumentException("NumeroRound must be positive");
         this.numeroRound = numeroRound;
+        this.rounds = new ArrayList<Round>();
     }
     
     public Giocatore getGiocatore1()
@@ -28,11 +28,21 @@ public class Partita
         return this.giocatore1;
     }
     
+    public void setGiocatore1(Giocatore giocatore)
+    {
+        this.giocatore1 = giocatore;
+    }
+    
     public Giocatore getGiocatore2()
     {
         return this.giocatore2;
     }
-
+    
+    public void setGiocatore2(Giocatore giocatore)
+    {
+        this.giocatore2 = giocatore;
+    }
+    
     public int getNumeroRound()
     {
         return this.numeroRound;
@@ -48,6 +58,9 @@ public class Partita
         this.rounds.add(round);
     }
     
+    /**
+     * @return the winner of this match, null if a draw occurred
+     */
     public Giocatore getVincitore()
     {
         Giocatore vincitore = null;
@@ -59,6 +72,9 @@ public class Partita
         return vincitore;
     }
     
+    /**
+     * @return the loser of this round, null if a draw occurred
+     */
     public Giocatore getSconfitto()
     {
         Giocatore sconfitto = null;

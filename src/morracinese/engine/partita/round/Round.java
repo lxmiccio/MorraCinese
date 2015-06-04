@@ -1,7 +1,7 @@
-package morracinese.partita.round;
+package morracinese.engine.partita.round;
 
-import morracinese.partita.*;
-import morracinese.partita.giocatore.*;
+import morracinese.engine.partita.giocatore.*;
+import morracinese.engine.partita.*;
 
 /**
  *
@@ -15,6 +15,8 @@ public class Round
     
     public Round(Partita partita)
     {
+        if(partita == null)
+            throw new IllegalArgumentException("Partita cannot be null");
         this.partita = partita;
     }
     
@@ -23,6 +25,9 @@ public class Round
         return this.partita;
     }
     
+    /**
+     * @return the winner of this round, null if a draw occurred
+     */
     public Giocatore getVincitore()
     {
         Giocatore vincitore = null;
@@ -36,11 +41,15 @@ public class Round
     
     public void setSceltaGiocatore1(Scelta scelta)
     {
+        if(scelta == null)
+            throw new IllegalArgumentException("Scelta cannot be null");
         this.sceltaGiocatore1 = scelta;
     }
     
     public void setSceltaGiocatore2(Scelta scelta)
     {
+        if(scelta == null)
+            throw new IllegalArgumentException("Scelta cannot be null");
         this.sceltaGiocatore2 = scelta;
     }
 }

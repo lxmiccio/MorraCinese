@@ -1,12 +1,13 @@
 package morracinese;
 
 import java.io.*;
-import morracinese.partita.*;
-import morracinese.partita.round.*;
+import morracinese.engine.partita.*;
+import morracinese.engine.partita.giocatore.*;
+import morracinese.engine.partita.round.*;
 
 /**
  *
- * @author Alex
+ * @author Alex, Simone
  */
 public class MorraCinese
 {
@@ -15,7 +16,10 @@ public class MorraCinese
     	BufferedReader tastiera = new BufferedReader(new InputStreamReader(System.in));
     	String scelta = null;
         boolean legalScelta = false;
+        
         Partita partita = new Partita(5);
+        partita.setGiocatore1(new Giocatore("G1"));
+        partita.setGiocatore2(new Giocatore("G2"));
         
         for(int roundCorrente = 0; roundCorrente < partita.getNumeroRound(); roundCorrente++)
         {

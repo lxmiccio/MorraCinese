@@ -1,4 +1,4 @@
-package morracinese.partita.giocatore;
+package morracinese.engine.partita.giocatore;
 
 /**
  *
@@ -11,10 +11,15 @@ public class Giocatore
 
     public Giocatore(String nome)
     {
+        if(nome == null)
+            throw new IllegalArgumentException("Nome cannot be null");
         this.nome = nome;
         this.punteggio = 0;
     }
     
+    /**
+     * Increase punteggio by 1
+     */
     public void increasePunteggio()
     {
         this.punteggio++;
