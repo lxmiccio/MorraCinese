@@ -15,11 +15,13 @@ public class Partita
     private Giocatore giocatore2;
     private int numeroRound;
     
-    public Partita(int numeroRound)
+    public Partita(int numeroRound, Giocatore giocatore1, Giocatore giocatore2)
     {
         if(numeroRound <= 0)
             throw new IllegalArgumentException("NumeroRound must be positive");
         this.numeroRound = numeroRound;
+        this.giocatore1 = giocatore1;
+        this.giocatore2 = giocatore2;
         this.rounds = new ArrayList<Round>();
     }
     
@@ -28,19 +30,9 @@ public class Partita
         return this.giocatore1;
     }
     
-    public void setGiocatore1(Giocatore giocatore)
-    {
-        this.giocatore1 = giocatore;
-    }
-    
     public Giocatore getGiocatore2()
     {
         return this.giocatore2;
-    }
-    
-    public void setGiocatore2(Giocatore giocatore)
-    {
-        this.giocatore2 = giocatore;
     }
     
     public int getNumeroRound()

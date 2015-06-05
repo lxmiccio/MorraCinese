@@ -17,9 +17,7 @@ public class MorraCinese
     	String scelta = null;
         boolean legalScelta = false;
         
-        Partita partita = new Partita(5);
-        partita.setGiocatore1(new Giocatore("G1"));
-        partita.setGiocatore2(new Giocatore("G2"));
+        Partita partita = new Partita(5, new Giocatore("G1"), new Giocatore("G2"));
         
         for(int roundCorrente = 0; roundCorrente < partita.getNumeroRound(); roundCorrente++)
         {
